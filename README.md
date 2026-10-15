@@ -16,8 +16,9 @@ gym-management-system
 │   │   └── style.css
 │   └── js
 │       └── app.js
-├── config
-│   └── database.php
+│   └── config
+│       ├── database.php
+│       └── membership-plans.php
 ├── includes
 │   ├── header.php
 │   └── footer.php
@@ -35,8 +36,25 @@ gym-management-system
 1. Clone the repository to your local machine.
 2. Navigate to the project directory.
 3. Set up the database using the SQL statements in `database/schema.sql`.
-4. Update the database connection settings in `config/database.php`.
+4. Set the database connection environment variables, or use the local defaults in `assets/config/database.php`.
 5. Open `index.php` in your web browser to access the application.
+
+## Deploying to Render
+
+This PHP application is configured to deploy to Render as a Docker web service. It uses MySQL, so create a hosted MySQL database separately; the local XAMPP database cannot be used by the deployed application.
+
+1. Create a hosted MySQL database and import `database/schema.sql` into it.
+2. Push the project, including the `Dockerfile`, to GitHub.
+3. In Render, select **New** > **Web Service**, connect the GitHub repository, and choose **Docker** as the runtime.
+4. Add these environment variables to the Render web service using the values from your MySQL provider:
+   - `DB_HOST`
+   - `DB_PORT`
+   - `DB_NAME`
+   - `DB_USERNAME`
+   - `DB_PASSWORD`
+5. Deploy the service. Keep database credentials in Render's environment settings; do not commit them to GitHub.
+
+The PHP database connection reads these variables and falls back to the local XAMPP defaults when they are not set.
 
 ## Usage
 - Navigate through the application using the header links.
