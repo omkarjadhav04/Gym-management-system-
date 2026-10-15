@@ -8,7 +8,18 @@ $conn = null;
 $databaseError = null;
 
 try {
-    $conn = new PDO("mysql:host=$host;port=$port;dbname=$db_name;charset=utf8mb4", $username, $password);
+    $connectionOptions = [];
+    if (getenv('DB_HOST')) {
+        $connectionOptions[PDO::MYSQL_ATTR_SSL_CA] = __DIR__ . '/../certs/isrgrootx1.pem';
+        $connectionOptions[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+    }
+
+    $conn = new PDO(
+        "mysql:host=$host;port=$port;dbname=$db_name;charset=utf8mb4",
+        $username,
+        $password,
+        $connectionOptions
+    );
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     $databaseError = $e->getMessage();
