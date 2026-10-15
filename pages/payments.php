@@ -2,9 +2,9 @@
 require_once '../includes/auth.php';
 require_admin();
 ob_start();
-include '../config/database.php';
+include '../assets/config/database.php';
 $databaseError = ob_get_clean();
-include '../config/membership-plans.php';
+include '../assets/config/membership-plans.php';
 include '../includes/header.php';
 
 $notice = '';

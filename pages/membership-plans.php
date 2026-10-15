@@ -1,5 +1,5 @@
 <?php
-include '../config/membership-plans.php';
+include '../assets/config/membership-plans.php';
 include '../includes/header.php';
 ?>
 

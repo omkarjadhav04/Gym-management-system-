@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/auth.php';
 require_admin();
-include '../config/database.php';
+include '../assets/config/database.php';
 
 $formData = [
     'name' => '',

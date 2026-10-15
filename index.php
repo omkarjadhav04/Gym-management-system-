@@ -1,6 +1,6 @@
 <?php
-include 'config/database.php';
-include 'config/membership-plans.php';
+include 'assets/config/database.php';
+include 'assets/config/membership-plans.php';
 
 $machines = [];
 $machineLoadError = false;
